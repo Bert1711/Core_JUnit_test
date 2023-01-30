@@ -51,7 +51,7 @@ public class MainTest {
     }
 
     @Test
-    public void testInvalidInputFormat() {
+    public void testArrayIndexOutOfBoundsException() {
         Product[] products = {
                 new Product("Хлеб", 30),
                 new Product("Яйцо", 10),
@@ -61,6 +61,17 @@ public class MainTest {
         int product = 4;
         int amount = 2;
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> cart.addProduct(product, amount));
+    }
+
+    @Test
+    public void testNumberFormatException() {
+        Product[] products = {
+                new Product("Хлеб", 30),
+                new Product("Яйцо", 10),
+                new Product("Молоко", 50)
+        };
+        ShoppingCart cart = new ShoppingCart(products);
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> cart.addProduct(Integer.parseInt("Хлеб"), 2));
     }
 
 }
