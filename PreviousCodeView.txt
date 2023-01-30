@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        String[] nameProducts = {"Хлеб", "Яйцо", "Молоко"};
+        int[] pricesProducts = {30, 10, 50};
+        int[] amountProducts = new int[nameProducts.length];
+        int[] costProducts = new int[pricesProducts.length];
+        int sumProduct = 0;
+
+        System.out.println("Список возможных товаров для покупки:");
+        for (int i = 0; i < nameProducts.length; i++) {
+            System.out.println((i + 1) + ") " + nameProducts[i] + " - " + pricesProducts[i] + " руб/шт");
+        }
+
+
+        while (true) {
+            System.out.println("Выберите товар и количество или введите <<end>>");
+            String input = scanner.nextLine();
+            if ("end".equals(input)) {
+                break;
+            }
+            String[] parts = input.split(" ");
+            int product = Integer.parseInt(parts[0]) - 1;
+            int amount = Integer.parseInt(parts[1]);
+            int currentPrice = pricesProducts[product];
+            amountProducts[product] += amount;
+            costProducts[product] += amount * currentPrice;
+        }
+        System.out.println("Ваша корзина:");
+        System.out.println();
+        for (int i = 0; i < amountProducts.length; i++) {
+            if (amountProducts[i] > 0) {
+                System.out.println("Наименование товара: " + nameProducts[i] + "\n"
+                + "Количество: " + amountProducts[i] + "\n"
+                + "Цена/за.ед: " + pricesProducts[i] + "\n"
+                + "Общая стоимость: " + costProducts[i]);
+                sumProduct += costProducts[i];
+                System.out.println();
+            }
+        }
+        System.out.println("Итого: " + sumProduct);
+    }
+
+}
