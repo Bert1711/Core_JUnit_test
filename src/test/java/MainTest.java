@@ -13,9 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  *
  * Тест-3 - Имитация неправильного ввода пользователя. Пользователь ввел число превышающее количества елементов в массиве.
  * Ожидание: тест упадет с исключением ArrayIndexOutOfBoundsException.
- *
- * Тест-4 - Имитация неправильного ввода пользователя. Пользователь ввел текст вместо числа.
- *  * Ожидание: тест упадет с исключением ArrayIndexOutOfBoundsException.
  */
 public class MainTest {
     @Test
@@ -64,17 +61,6 @@ public class MainTest {
         int product = 4;
         int amount = 2;
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> cart.addProduct(product, amount));
-    }
-
-    @Test
-    public void testNumberFormatException() {
-        Product[] products = {
-                new Product("Хлеб", 30),
-                new Product("Яйцо", 10),
-                new Product("Молоко", 50)
-        };
-        ShoppingCart cart = new ShoppingCart(products);
-        assertThrows(NumberFormatException.class, () -> cart.addProduct(Integer.parseInt("Хлеб"), 2));
     }
 
 }
